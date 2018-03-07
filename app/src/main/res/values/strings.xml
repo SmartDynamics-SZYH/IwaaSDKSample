@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">IwaaSDKSample</string>
+    <string-array name="ewaa_array">
+        <item>五/六麦串口通讯测试</item>
+        <item>语音语义测试</item>
+        <item>工控机连接</item>
+        <item>人脸识别测试</item>
+        <item>机器人控制</item>
+        <item>机器人状态信息上报</item>
+        <item>其他信息(身份证、银行卡和条形码等)上报</item>
+    </string-array>
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/activity_web_socket"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.szyh.ewaasdkdemo.WebSocketActivity">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotMotionRequestAhead"
+            android:text="运动控制（前进）"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotLight2"
+            android:text="二代灯光控制（眼睛）"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotLight3"
+            android:text="三代灯光控制（上嘴唇）"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotGetMap"
+            android:text="同步地图"/>
+
+        <Button
+            android:id="@+id/id_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotModeRequest"
+            android:text="模式切换(自由模式)"/>
+
+        <Button
+            android:id="@+id/id_head_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotHeadRequest"
+            android:text="头部控制(水平转动)"/>
+
+        <Button
+            android:id="@+id/id_body_angle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotTurnAround"
+            android:text="身体转动(转圈)"/>
+
+        <Button
+            android:id="@+id/id_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotNavigationRequest"
+            android:text="导航运动"/>
+
+        <Button
+            android:id="@+id/id_shut_down"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotShutdown"
+            android:text="关机"/>
+
+        <Button
+            android:id="@+id/id_operate_arm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotOperateArm"
+            android:text="控制手臂"/>
+
+        <Button
+            android:id="@+id/id_operate_print"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="robotOperatePrint"
+            android:text="打印控制"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/id_start_recognize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:text="开始识别" />
+
+    <Button
+        android:id="@+id/id_stop_recognize"
+        android:layout_below="@id/id_start_recognize"
+        android:layout_alignLeft="@id/id_start_recognize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止识别" />
+
+    <Button
+        android:id="@+id/id_start_tts"
+        android:layout_toRightOf="@id/id_start_recognize"
+        android:layout_marginLeft="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始合成" />
+
+    <Button
+        android:id="@+id/id_stop_tts"
+        android:layout_below="@id/id_start_tts"
+        android:layout_alignLeft="@id/id_start_tts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束合成" />
+
+    <Button
+        android:id="@+id/id_start_play"
+        android:layout_toRightOf="@id/id_start_tts"
+        android:layout_marginLeft="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始播放" />
+
+    <Button
+        android:id="@+id/id_stop_play"
+        android:layout_below="@id/id_start_play"
+        android:layout_alignLeft="@id/id_start_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止播放" />
+
+    <Button
+        android:id="@+id/id_clear"
+        android:layout_toRightOf="@id/id_start_play"
+        android:layout_marginLeft="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="清空聊天" />
+
+    <ScrollView
+        android:id="@+id/scroll_reco"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/id_stop_recognize"
+        >
+
+        <TextView
+            android:id="@+id/tv_reco_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="10dp"/>
+    </ScrollView>
+
+</RelativeLayout>

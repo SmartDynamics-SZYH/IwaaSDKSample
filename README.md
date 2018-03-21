@@ -12,6 +12,7 @@ Iwaa SDK是以aar文件打包，分为两个包语音语义SDK和机器人控制
 ### （一）机器人控制SDK（IwaaSDK-release-2.0.aar） ###
 机器人控制SDK包含了机器人的所有技能：运动控制、二代灯光控制、三代灯光控制、同步地图、模式切换、头部控制、身体转动、导航运动、手臂控制、机器人关机、机器人定时开机、打印功能、人脸识别开关、机器人校时功能、指纹信息增、删、查及其识别开关功能、广告机器人投射灯光开关和功放开关功能、其他扩展功能。
 ### （二）语音语义SDK(IwaaAudioSDK-release-2.0.aar) ###
+语音语义功能需要集成以下三个SDK  
 1、IwaaAudioSDK-release-2.0.aar
 集成了科大讯飞语音识别技术、语音合成技术；科大讯飞AIUI语义；灵聚广义语义。
 
@@ -34,12 +35,20 @@ repositories {
 }
 dependencies {
 	//机器人控制需要添加的aar
-	compile(name: 'IwaaSDK-release-2.0, ext: 'aar')；
-	compile 'com.alibaba:fastjson:1.1.54.android';
+	implementation(name: 'IwaaSDK-release-2.0, ext: 'aar')；
+	implementation 'com.alibaba:fastjson:1.1.54.android';
 	//语音语义需要添加的aar
-	compile(name: 'IwaaAudioSDK-release-2.0, ext: 'aar')；
-	compile(name: 'IflytechSDK-release-1.0', ext: 'aar')；//按需要添加（替换自己的AppID就删除掉）
-	compile(name: 'AIEngine.aar', ext: 'aar')；
+	implementation(name: 'IwaaAudioSDK-release-2.0, ext: 'aar')；
+	implementation(name: 'IflytechSDK-release-1.0', ext: 'aar')；//按需要添加（替换自己的AppID就删除掉）
+	implementation(name: 'AIEngine.aar', ext: 'aar')；
+}
+```  
+或者简洁版
+
+```
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+	implementation 'com.alibaba:fastjson:1.1.68.android'
 }
 ```  
 3. 在AndroidManifest.xml中添加权限，如有则忽略 

@@ -1,11 +1,14 @@
 package com.szyh.demo;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.szyh.ewaasdk.websocket.RobotWebSocketClient;
 import com.szyh.ewaasdk.websocket.helper.RobotCommHelper;
@@ -21,6 +24,9 @@ public class WebSocketActivity extends AppCompatActivity implements RobotWebSock
 
     private RobotCommHelper robotCommHelper = new RobotCommHelper();
 
+    private Button connBtn, disconnBtn;
+    private TextView connStatusTv;
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -52,6 +58,18 @@ public class WebSocketActivity extends AppCompatActivity implements RobotWebSock
         super.onCreate(savedInstanceState);
         setTitle("工控机控制");
         setContentView(R.layout.activity_web_socket);
+        connBtn = findViewById(R.id.id_conn);
+        disconnBtn = findViewById(R.id.id_dis_conn);
+        connStatusTv = findViewById(R.id.id_conn_status);
+        if (robotCommHelper.isOpen()) {
+            connBtn.setClickable(false);
+            disconnBtn.setClickable(true);
+            connStatusTv.setText("已连接工控机");
+        } else {
+            connBtn.setClickable(true);
+            disconnBtn.setClickable(false);
+            connStatusTv.setText("已断开工控机");
+        }
     }
 
     public void connectWindow(View view) {
@@ -79,6 +97,14 @@ public class WebSocketActivity extends AppCompatActivity implements RobotWebSock
         handler.removeCallbacks(disconnectRunnable);
         handler.removeCallbacks(reconnectRunnable);
         Log.d(TAG, "onOpen");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                connBtn.setClickable(false);
+                disconnBtn.setClickable(true);
+                connStatusTv.setText("已连接工控机");
+            }
+        });
     }
 
     @Override
@@ -87,6 +113,14 @@ public class WebSocketActivity extends AppCompatActivity implements RobotWebSock
         handler.removeCallbacks(disconnectRunnable);
         handler.postDelayed(reconnectRunnable, 100);
         Log.d(TAG, "onClose");
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                connBtn.setClickable(true);
+                disconnBtn.setClickable(false);
+                connStatusTv.setText("已断开工控机");
+            }
+        });
     }
 
     @Override
@@ -97,4 +131,5 @@ public class WebSocketActivity extends AppCompatActivity implements RobotWebSock
             handler.postDelayed(reconnectRunnable, 100);
         }
     }
+
 }

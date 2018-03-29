@@ -9,6 +9,11 @@ import com.szyh.ewaasdk.websocket.bean.SensorStatusResponse;
 import com.szyh.ewaasdk.websocket.helper.RobotCommHelper;
 import com.szyh.ewaasdk.websocket.helper.RobotStatusListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class RobotStatusActivity extends AppCompatActivity {
     private RobotCommHelper robotCommHelper = new RobotCommHelper();
     private RobotStatusListenerImpl rsl = new RobotStatusListenerImpl();
@@ -28,11 +33,36 @@ public class RobotStatusActivity extends AppCompatActivity {
     }
 
 
+    private int minLaserDistance = -1;
+
     class RobotStatusListenerImpl implements RobotStatusListener {
 
         @Override
-        public void onSensorStatusResponse(SensorStatusResponse sensorStatusResponse) {
+        public void onSensorStatusResponse(SensorStatusResponse ssr) {
             //TODO 机器人传感器信息的回调
+            //激光束 0-189（共计180个）
+            ArrayList<SensorStatusResponse.Laser> lasers = ssr.getLaserList();
+            if (lasers != null) {
+                List<Integer> distances = new ArrayList<>();
+                for (int i = 44; i < 135; i++) {//遍历序号44到135号的激光束
+                    int distance = lasers.get(i).getDistance();
+                    distances.add(distance);
+                    Collections.sort(distances, new Comparator<Integer>() {
+                        @Override
+                        public int compare(Integer o1, Integer o2) {
+                            if (o1 > o2) {//升序排序
+                                return 1;
+                            } else if (o1 == o2) {
+                                return 0;
+                            } else {
+                                return -1;
+                            }
+                        }
+                    });
+                }
+                minLaserDistance = distances.get(0);//获取最小距离，单位毫米
+                //TODO 判断 minLaserDistance 大小来做具体的业务。比如1、小于1000毫米以内机器人唤醒，2、大于2000毫米之外机器人休眠
+            }
         }
 
         @Override

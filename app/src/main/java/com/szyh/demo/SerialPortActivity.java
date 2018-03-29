@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.szyh.demo.helper.UARTHelper;
+import com.szyh.demo.listener.AngleChangeListener;
 import com.szyh.ewaasdk.serialport.SerialPortDataListener;
 import com.szyh.ewaasdk.serialport.SerialPortStateListener;
 import com.szyh.ewaasdk.serialport.SerialPortTools;
@@ -15,8 +17,7 @@ import com.szyh.ewaasdk.serialport.SerialPortTools;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SerialPortActivity extends AppCompatActivity implements
-        SerialPortDataListener, SerialPortStateListener {
+public class SerialPortActivity extends AppCompatActivity implements AngleChangeListener {
 
     private static final String TAG = "SerialPortActivity";
     private TextView serialPortText;
@@ -26,75 +27,25 @@ public class SerialPortActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_serial_port);
         setTitle("五麦串口通讯框架测试");
+        UARTHelper.createAgent(this);
         serialPortText = (TextView) findViewById(R.id.id_serial_port_text);
-        if (!SerialPortTools.isStarted()) {
-            try {
-                SerialPortTools.init("/dev/ttyS3", 115200, true);
-            } catch (Exception e) {
-                e.printStackTrace();
+    }
+
+    @Override
+    public void onAngleChange(final int angle) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                serialPortText.setText("唤醒角度：" + angle);
+                Toast.makeText(SerialPortActivity.this, "唤醒角度：" + angle, Toast.LENGTH_SHORT).show();
             }
-        }
-        SerialPortTools.addDataListener(this);
-        SerialPortTools.addStateListener(this);
-    }
-
-
-    private static final String ANGLE_HEAD = "angle:";
-    private static final String ANGLE_INFO = "angle:360";
-    private StringBuffer serialPortSb = new StringBuffer();
-
-
-    @Override
-    public void onSerialPortDataReceived(byte[] data) {
-        final String receive = new String(data).trim();
-        if (!TextUtils.isEmpty(receive)) {
-            serialPortSb.append(receive);
-        }
-        if (serialPortSb.toString().contains(ANGLE_HEAD)) {
-            int angleIndex = serialPortSb.indexOf(ANGLE_HEAD);
-            serialPortSb.delete(0, angleIndex);
-            if (serialPortSb.length() < ANGLE_INFO.length()) {
-                return;
-            }
-            serialPortSb.delete(ANGLE_INFO.length(), serialPortSb.length());
-            Matcher matcher = Pattern.compile("(\\d+)").matcher(serialPortSb.toString().trim());
-            if (matcher.find()) {
-                //该角度就是五麦或者六麦被唤醒的角度，
-                // 根据该角度和工控机上报的机器人头部角度，再计算艾娃的头部需要转动的角度。
-                final int angle = Integer.parseInt(matcher.group(1)) % 360;
-                Log.d(TAG, "onSerialPortDataReceived: angle = " + angle);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        serialPortText.setText("angle:" + angle);
-                        Toast.makeText(SerialPortActivity.this, "angle：" + angle, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        }
-    }
-
-    @Override
-    public void onSerialPortDataSend(byte[] data) {
-        String send = new String(data).trim();
-    }
-
-    @Override
-    public void onSerialPortOpened() {
-        Log.d(TAG, "onSerialPortOpened: ");
-    }
-
-    @Override
-    public void onSerialPortClosed() {
-        Log.d(TAG, "onSerialPortClosed: ");
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SerialPortTools.removeStateListener(this);
-        SerialPortTools.removeDataListener(this);
-        //SerialPortTools.close();
+        UARTHelper.destroy();
     }
 
     /**
@@ -133,5 +84,4 @@ public class SerialPortActivity extends AppCompatActivity implements
             e.printStackTrace();
         }
     }
-
 }

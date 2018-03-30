@@ -18,7 +18,7 @@ import org.java_websocket.handshake.ServerHandshake;
 /**
  * 重连工控机的例子。
  */
-public class WebSocketActivity extends AppCompatActivity implements RobotWebSocketClient.WebSocketStatusListener {
+public class WebSocketActivity extends BaseActivity implements RobotWebSocketClient.WebSocketStatusListener {
 
     private static final String TAG = "WebSocketActivity";
 

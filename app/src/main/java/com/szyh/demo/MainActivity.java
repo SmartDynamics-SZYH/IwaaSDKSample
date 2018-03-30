@@ -8,7 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import com.szyh.demo.helper.NavigationBarHelper;
+
+public class MainActivity extends BaseActivity {
     private ListView listView;
     private String[] mDatas;
 

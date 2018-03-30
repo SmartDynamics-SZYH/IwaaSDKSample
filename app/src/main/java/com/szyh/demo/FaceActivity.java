@@ -11,7 +11,7 @@ import com.szyh.ewaasdk.websocket.helper.FaceResultListener;
 import com.szyh.ewaasdk.websocket.helper.RobotCommHelper;
 import com.szyh.ewaasdk.websocket.robot.FaceRecognitioSwitch;
 
-public class FaceActivity extends AppCompatActivity implements FaceResultListener {
+public class FaceActivity extends BaseActivity implements FaceResultListener {
     private RobotCommHelper robotCommHelper = new RobotCommHelper();
     private FaceRecognitioSwitch faceRecognitioSwitch = new FaceRecognitioSwitch();
     private CheckBox checkBox;

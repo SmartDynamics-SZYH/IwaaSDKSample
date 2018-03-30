@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class RobotStatusActivity extends AppCompatActivity {
+public class RobotStatusActivity extends BaseActivity {
     private RobotCommHelper robotCommHelper = new RobotCommHelper();
     private RobotStatusListenerImpl rsl = new RobotStatusListenerImpl();
 

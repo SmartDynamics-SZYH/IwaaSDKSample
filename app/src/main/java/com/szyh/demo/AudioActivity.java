@@ -18,7 +18,7 @@ import com.szyh.ewaasdk.audio.SynthesizerListener;
 
 import java.util.List;
 
-public class AudioActivity extends AppCompatActivity
+public class AudioActivity extends BaseActivity
         implements View.OnClickListener, RecognizeListener, SynthesizerListener, ResponseListener {
     private String TAG = "MainActivity";
     private Button startRe, stopRe, startTTS, stopTTS, startPlay, stopPlay, clearBtn;

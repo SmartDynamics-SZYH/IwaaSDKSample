@@ -17,7 +17,7 @@ import com.szyh.ewaasdk.serialport.SerialPortTools;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SerialPortActivity extends AppCompatActivity implements AngleChangeListener {
+public class SerialPortActivity extends BaseActivity implements AngleChangeListener {
 
     private static final String TAG = "SerialPortActivity";
     private TextView serialPortText;

@@ -22,7 +22,7 @@ import com.szyh.ewaasdk.websocket.robot.RobotOperationShutdown;
  * 1、连接sebsocketServer
  * 2、客户端登录,登陆成功可以对机器人进行控制
  */
-public class RobotOperateActivity extends AppCompatActivity {
+public class RobotOperateActivity extends BaseActivity {
 
     private static final String TAG = "RobotOperateActivity";
 

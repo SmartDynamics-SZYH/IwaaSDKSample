@@ -8,7 +8,7 @@ import com.szyh.ewaasdk.websocket.helper.RobotCommHelper;
 import com.szyh.ewaasdk.websocket.helper.RobotIDReaderListener;
 import com.szyh.ewaasdk.websocket.helper.RobotOtherCardListener;
 
-public class OtherInfoActivity extends AppCompatActivity {
+public class OtherInfoActivity extends BaseActivity {
     private RobotCommHelper robotCommHelper = new RobotCommHelper();
     private RobotIDReaderListenerImpl rirl = new RobotIDReaderListenerImpl();
     private RobotOtherCardListenerImpl rocl = new RobotOtherCardListenerImpl();

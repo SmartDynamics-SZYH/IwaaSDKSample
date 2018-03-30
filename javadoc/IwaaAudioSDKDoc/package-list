@@ -1,0 +1,9 @@
+com.baidu.speech.recognize
+com.baidu.speech.syntherize
+com.com.iflytek.inputmethod.asr.vad
+com.szyh.ewaasdk.audio
+com.szyh.ewaasdk.audio.adapter
+com.szyh.ewaasdk.audio.bean
+com.szyh.ewaasdk.audio.semantic
+com.szyh.ewaasdk.audio.speech
+com.szyh.ewaasdk.audio.util

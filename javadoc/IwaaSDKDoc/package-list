@@ -1,0 +1,10 @@
+com.szyh.ewaasdk.serialport
+com.szyh.ewaasdk.socket
+com.szyh.ewaasdk.socket.helper
+com.szyh.ewaasdk.socket.server
+com.szyh.ewaasdk.utilities
+com.szyh.ewaasdk.websocket
+com.szyh.ewaasdk.websocket.bean
+com.szyh.ewaasdk.websocket.constant
+com.szyh.ewaasdk.websocket.helper
+com.szyh.ewaasdk.websocket.robot

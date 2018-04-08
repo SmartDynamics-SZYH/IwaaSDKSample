@@ -1,7 +1,6 @@
 package com.szyh.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.szyh.ewaasdk.websocket.bean.IDCardResponse;
 import com.szyh.ewaasdk.websocket.helper.RobotCommHelper;

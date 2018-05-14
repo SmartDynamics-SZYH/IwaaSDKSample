@@ -2,10 +2,13 @@ package com.szyh.demo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.szyh.ewaasdk.websocket.bean.FingerprintInputResponse;
 import com.szyh.ewaasdk.websocket.bean.FingerprintResponse;
 import com.szyh.ewaasdk.websocket.helper.FingerprintInputListener;
+import com.szyh.ewaasdk.websocket.helper.FingerprintRecognizeListener;
 import com.szyh.ewaasdk.websocket.helper.RobotCommHelper;
 import com.szyh.ewaasdk.websocket.robot.RobotCallback;
 import com.szyh.ewaasdk.websocket.robot.RobotOperateFingerprint;
@@ -19,6 +22,9 @@ import java.util.List;
  */
 
 public class FingerprintActivity extends BaseActivity {
+
+    private static final String TAG = FingerprintActivity.class.getSimpleName();
+
     RobotCommHelper robotCommHelper = new RobotCommHelper();
     private RobotOperationFactory rof = new RobotOperationFactory();
     private List<FingerprintResponse.FingerInfo> fingerInfolList = new ArrayList<>();
@@ -91,4 +97,32 @@ public class FingerprintActivity extends BaseActivity {
             }
         }
     }
+
+
+    /**
+     * 开始指纹识别
+     */
+    public void openFingerprintRecognize() {
+        rof.createRobotOperation(RobotOperateFingerprint.class).recognizeSwitch(true);
+        robotCommHelper.addFingerprintRecognizeListener(fingerprintRecognizeListener);
+    }
+
+    /**
+     * 关闭指纹识别
+     */
+    public void closeFingerprintRecognize() {
+        rof.createRobotOperation(RobotOperateFingerprint.class).recognizeSwitch(false);
+        robotCommHelper.addFingerprintRecognizeListener(fingerprintRecognizeListener);
+    }
+
+    FingerprintRecognizeListener fingerprintRecognizeListener = new FingerprintRecognizeListener() {
+        @Override
+        public void onFingerprintRecognize(FingerprintResponse.FingerInfo fingerInfo) {
+            if (TextUtils.isEmpty(fingerInfo.getName()) || fingerInfo.getId().equals("-1")) {
+                Log.e(TAG, "onFingerprintRecognize: 指纹未录入");
+                return;
+            }
+            Log.d(TAG, "onFingerprintRecognize: " + fingerInfo.getName() + ",验证成功！");
+        }
+    };
 }

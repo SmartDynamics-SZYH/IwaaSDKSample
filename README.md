@@ -254,7 +254,9 @@ onReadIDResponse(IDCardResponse idResponse)
 人脸识别信息的推送。onFaceResult(FaceResultResponse faceResultResponse)
 ### 5、指纹录入监听器（FingerprintInputListener） ###
 指纹创建时候，需要做指纹录入，录入时候有录入信息推送。onFingerprintInput(FingerprintInputResponse fingerprintInputResponse)
-### 5、其他扩展推送信息（ExtUploadListener） ###
+### 6、指纹识别监听器（FingerprintRecognizeListener） ###
+指纹识别时候，推送识别信息。onFingerprintRecognize(FingerprintResponse.FingerInfo fingerInfo)
+### 7、其他扩展推送信息（ExtUploadListener） ###
 onExtUpload(String json) 
 ## (三) 六麦克风阵列模块 ##
 ### 1、六麦简介与唤醒 ###

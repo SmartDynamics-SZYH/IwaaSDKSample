@@ -8,5 +8,6 @@
         <item>机器人控制</item>
         <item>机器人状态信息上报</item>
         <item>其他信息(身份证、银行卡和条形码等)上报</item>
+        <item>指纹相关</item>
     </string-array>
 </resources>

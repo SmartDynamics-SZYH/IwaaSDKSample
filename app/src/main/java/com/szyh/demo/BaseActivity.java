@@ -16,7 +16,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NavigationBarHelper.hideNavigationBar(getWindow().getDecorView());
+        //NavigationBarHelper.hideNavigationBar(getWindow().getDecorView());
         //禁止进入休眠
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }

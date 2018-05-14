@@ -49,6 +49,9 @@ public class MainActivity extends BaseActivity {
                     case 6:
                         startActivity(new Intent(MainActivity.this, OtherInfoActivity.class));
                         break;
+                    case 7:
+                        startActivity(new Intent(MainActivity.this, FingerprintActivity.class));
+                        break;
                     default:
                         break;
                 }

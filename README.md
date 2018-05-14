@@ -252,6 +252,8 @@ onReadIDResponse(IDCardResponse idResponse)
 银行卡阅读器读取到银行卡，推送的银行卡信息。条形码阅读器读取到的条形码，推送过来的条形码信息。onReadOtherCard(int type, String number)
 ### 4、人脸识别结果信息（FaceResultListener） ###
 人脸识别信息的推送。onFaceResult(FaceResultResponse faceResultResponse)
+### 5、指纹录入监听器（FingerprintInputListener） ###
+指纹创建时候，需要做指纹录入，录入时候有录入信息推送。onFingerprintInput(FingerprintInputResponse fingerprintInputResponse)
 ### 5、其他扩展推送信息（ExtUploadListener） ###
 onExtUpload(String json) 
 ## (三) 六麦克风阵列模块 ##

@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
 
     <application
@@ -34,10 +34,9 @@
         <activity android:name=".FaceActivity"/>
         <activity android:name=".RobotOperateActivity"/>
         <activity android:name=".WebSocketActivity"/>
-        <activity android:name=".RobotStatusActivity">
-        </activity>
-        <activity android:name=".OtherInfoActivity">
-        </activity>
+        <activity android:name=".RobotStatusActivity"/>
+        <activity android:name=".OtherInfoActivity"/>
+        <activity android:name=".FingerprintActivity"/>
     </application>
 
 </manifest>

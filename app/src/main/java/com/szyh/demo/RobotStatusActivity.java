@@ -44,7 +44,10 @@ public class RobotStatusActivity extends BaseActivity {
             ArrayList<SensorStatusResponse.Laser> lasers = ssr.getLaserList();
             if (lasers != null) {
                 List<Integer> distances = new ArrayList<>();
-                for (int i = 44; i < 135; i++) {//遍历序号44到135号的激光束
+                int size = lasers.size();//激光束数目
+                int index = (size - 180) / 2 + 44;//机器人正前方开始位置
+                int indexMax = index + 90;
+                for (int i = index; i < indexMax; i++) {
                     int distance = lasers.get(i).getDistance();
                     distances.add(distance);
                     Collections.sort(distances, new Comparator<Integer>() {
@@ -68,6 +71,8 @@ public class RobotStatusActivity extends BaseActivity {
         @Override
         public void onRobotMotionStatusResponse(MotionStatusResponse motionStatusResponse) {
             //TODO 机器人运动状态信息回调
+            //获取头部水平角度
+            int headHorizontalAngle = motionStatusResponse.getHeadHorizontal();
         }
 
         @Override

@@ -2,6 +2,7 @@ package com.szyh.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 import com.szyh.ewaasdk.websocket.robot.RobotOperationArm;
@@ -162,6 +163,13 @@ public class RobotOperateActivity extends BaseActivity {
      * @param view
      */
     public void robotOperatePrint(View view) {
-        rof.createRobotOperation(RobotOperationPrint.class).sendPrint("Hello World");
+//        rof.createRobotOperation(RobotOperationPrint.class).sendPrint("Hello World");
+        rof.createRobotOperation(RobotOperationPrint.class).print("Hello World",
+                new RobotOperationPrint.PrintListener() {
+                    @Override
+                    public void onPrint(int responseCode) {
+                        Log.i(TAG, "onPrint: responseCode = " + responseCode);
+                    }
+                });
     }
 }

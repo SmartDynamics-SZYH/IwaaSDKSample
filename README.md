@@ -9,7 +9,7 @@ IwaaAudioSDK语音语义相关，包括语音识别、语音合成、语义。
 Android开发工具为Android Studio,不建议使用Eclipse集成。
 Iwaa SDK 适用Android SDK使用版本：4.4及以上。
 Iwaa SDK是以aar文件打包，分为两个包语音语义SDK和机器人控制SDK。分别如下：
-### （一）机器人控制SDK（IwaaSDK-release-2.0.aar） ###
+### （一）机器人控制SDK（IwaaSDK-release-2.1.aar） ###
 机器人控制SDK包含了机器人的所有技能：运动控制、二代灯光控制、三代灯光控制、同步地图、模式切换、头部控制、身体转动、导航运动、手臂控制、机器人关机、机器人定时开机、打印功能、人脸识别开关、机器人校时功能、指纹信息增、删、查及其识别开关功能、广告机器人投射灯光开关和功放开关功能、其他扩展功能。
 ### （二）语音语义SDK(IwaaAudioSDK-release-2.0.aar) ###
 语音语义功能需要集成以下三个SDK  
@@ -35,7 +35,7 @@ repositories {
 }
 dependencies {
 	//机器人控制需要添加的aar
-	implementation(name: 'IwaaSDK-release-2.0, ext: 'aar')；
+	implementation(name: 'IwaaSDK-release-2.1, ext: 'aar')；
 	implementation 'com.alibaba:fastjson:1.1.54.android';
 	//语音语义需要添加的aar
 	implementation(name: 'IwaaAudioSDK-release-2.0, ext: 'aar')；
@@ -111,8 +111,40 @@ dependencies {
 （2）下嘴唇灯光  
 	开启：lowerLipLightOn(int period, int lightValue)或者lowerLipLightOn(int period, int lightValue, RobotCallback robotCallback)  
 	关闭：lowerLipLightOn(int period, int lightValue)或者lowerLipLightOn(int period, int lightValue, RobotCallback robotCallback)
-### 4、同步地图（RobotOperationMap） ###
-机器人默认地图同步功能，同步成功会回调MapListener监听器。同步地图方法getDefaultMapInfo()
+### 4、地图操作（RobotOperationMap） ###
+（1）获取默认地图  
+	setMapListener(MapListener mapListener) 和 getDefaultMapInfo()
+
+（2）设置默认地图	  
+	setDefaultMap(int mapId, @NonNull final DefaultMapListener defaultMapListener)  
+
+（3）根据地图Name获取地图数据  
+	getMapByName(String name, @NonNull final OnMapListener onMapListener)  
+
+（4）获取地图数据  
+	getAllMapInfos(@NonNull final MapInfoListener mapInfoListener)
+
+（5）设置充电桩  
+	setChargePoint(int mapID, double x, double y, double angle, ChargePointListener listener)  
+
+（6）添加地图方案	  
+	addMapPlan(@NonNull String planName, @NonNull String remark, AddMapPlanListener listener)  
+
+（7）删除地图方案  
+	deleteMapPlan(@NonNull int planId, DeleteMapPlanListener listener)  
+
+（8）配置基站  
+	navigationMode()或者navigationMode(RobotCallback robotCallback)
+
+（9）建图（创建、取消和结束建图）  
+	createMap(@NonNull int planId, String mapName, int operation, int x, int y, int offsetX, int offsetY, int angle, CreateMapListener listener)
+
+（10）替换地图  
+	replaceMap(@NonNull String mapFileName, String mapData, ReplaceMapListener listener)
+
+（11）设置电子围栏
+	setElectronicFence(@NonNull int mapID, List<MapInfosResponse.MapPlanListBean.MapListBean.ElectricFenceLinesBean> electricFenceLines, List<MapInfosResponse.MapPlanListBean.MapListBean.ElectricFenceRectsBean> electricFenceRects, ElectronicFenceSettingListener listener)
+
 ###  5、模式切换（RobotOperationMode） ###
 机器人模式切换，包含四种模式：手动(服务)、自由、充电、导航  
 （1）手动模式  

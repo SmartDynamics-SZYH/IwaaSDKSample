@@ -142,8 +142,9 @@ dependencies {
 （10）替换地图  
 	replaceMap(@NonNull String mapFileName, String mapData, ReplaceMapListener listener)
 
-（11）设置电子围栏
-	setElectronicFence(@NonNull int mapID, List<MapInfosResponse.MapPlanListBean.MapListBean.ElectricFenceLinesBean> electricFenceLines, List<MapInfosResponse.MapPlanListBean.MapListBean.ElectricFenceRectsBean> electricFenceRects, ElectronicFenceSettingListener listener)
+
+（11）设置电子围栏  
+	setElectronicFence(@NonNull int mapID, List<MapInfosResponse.MapPlanListBean.MapListBean.ElectricFenceLinesBean> electricFenceLines, List<MapInfosResponse.MapPlanListBean.MapListBean.ElectricFenceRectsBean> electricFenceRects, ElectronicFenceSettingListener listene)
 
 ###  5、模式切换（RobotOperationMode） ###
 机器人模式切换，包含四种模式：手动(服务)、自由、充电、导航  

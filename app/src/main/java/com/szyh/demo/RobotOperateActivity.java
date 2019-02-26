@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import com.szyh.ewaasdk.websocket.robot.RobotCallback;
 import com.szyh.ewaasdk.websocket.robot.RobotOperationArm;
 import com.szyh.ewaasdk.websocket.robot.RobotOperationFactory;
 import com.szyh.ewaasdk.websocket.robot.RobotOperationHead;
@@ -164,12 +165,24 @@ public class RobotOperateActivity extends BaseActivity {
      */
     public void robotOperatePrint(View view) {
 //        rof.createRobotOperation(RobotOperationPrint.class).sendPrint("Hello World");
-        rof.createRobotOperation(RobotOperationPrint.class).print("Hello World",
-                new RobotOperationPrint.PrintListener() {
-                    @Override
-                    public void onPrint(int responseCode) {
-                        Log.i(TAG, "onPrint: responseCode = " + responseCode);
-                    }
-                });
+//        rof.createRobotOperation(RobotOperationPrint.class).print("Hello World",
+//                new RobotOperationPrint.PrintListener() {
+//                    @Override
+//                    public void onPrint(int responseCode) {
+//                        Log.i(TAG, "onPrint: responseCode = " + responseCode);
+//                    }
+//                });
+
+        rof.createRobotOperation(RobotOperationPrint.class).sendPrint("Hello World~~~~~", new RobotCallback() {
+            @Override
+            public void onSuccess() {
+                Log.i(TAG, "onSuccess: ");
+            }
+
+            @Override
+            public void onFail(Exception e) {
+                Log.i(TAG, "onFail: " + e.toString());
+            }
+        });
     }
 }

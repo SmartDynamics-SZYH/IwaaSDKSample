@@ -42,7 +42,7 @@ dependencies {
 	implementation(name: 'IflytechSDK-release-1.0', ext: 'aar')；//按需要添加（替换自己的AppID就删除掉）
 	implementation(name: 'AIEngine.aar', ext: 'aar')；
 }
-```  
+```
 或者简洁版
 
 ```
@@ -50,7 +50,7 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 	implementation 'com.alibaba:fastjson:1.1.68.android'
 }
-```  
+```
 3. 在AndroidManifest.xml中添加权限，如有则忽略 
 
 ```
@@ -61,7 +61,7 @@ dependencies {
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-```  
+```
 # 三、功能说明 #
 ## (一) 机器人控制功能模块 ##
 ### 1、运动控制(RobotOperationMotion) ###
@@ -85,7 +85,8 @@ dependencies {
 	直接用sendMotionMessage(float v, float w, RobotCallback robotCallback)方法。  
 	v - 前进后退方向的值（-80 -- 80）,负值为后退，0为停止，正值为前进，绝对值越大前进后退速率越大;  
 	w - 左转右转方向值（-80 -- 80）,负值为右转，0为停止，正值为左转，绝对值越大旋转速率越大;
-### 2、二代灯光控制（RobotOperationLight） ###
+
+### ~~2、二代灯光控制（RobotOperationLight）（已弃用）~~ ###
 机器人灯光控制，控制机器人的眼睛、耳朵和身体上的灯光控制。  
 （1）眼睛灯光  
 	开启：eyeLightOn(int period, int lightValue)  或者  eyeLightOn(int period, int lightValue, RobotCallback robotCallback)；  
@@ -102,15 +103,37 @@ dependencies {
 （4）所有灯光  
 	开启：allLightOn(int period, int lightValue)  
 	关闭：allLightOff()
+
 ### 3、三代灯光控制（RobotOperationLight2） ###
 第三代机器人的灯光控制，控制机器人上嘴唇和下嘴唇灯光。  
 （1）上嘴唇灯光  
-	开启：upperLipLightOn(int period, int lightValue)或者upperLipLightOn(int period, int lightValue, RobotCallback robotCallback)  
-	关闭：upperLipLightOff()或者upperLipLightOff(RobotCallback robotCallback)  
+
+​	开启：upperLipLightOn(int period, int lightValue)或者upperLipLightOn(int period, int lightValue, RobotCallback robotCallback)  
+​	关闭：upperLipLightOff()或者upperLipLightOff(RobotCallback robotCallback)  
 
 （2）下嘴唇灯光  
 	开启：lowerLipLightOn(int period, int lightValue)或者lowerLipLightOn(int period, int lightValue, RobotCallback robotCallback)  
-	关闭：lowerLipLightOn(int period, int lightValue)或者lowerLipLightOn(int period, int lightValue, RobotCallback robotCallback)
+	关闭：lowerLipLightOff(int period, int lightValue)或者lowerLipLightOn(int period, int lightValue, RobotCallback robotCallback)
+
+```java
+    /**
+     * 打开上嘴唇灯光
+     *
+     * @param period        闪烁频率周期  0.0--10.0 单位：0.1秒，特殊值：101表示不闪烁。
+     * @param lightValue    灯光亮度，0-100 百分比亮度
+     */
+    public void upperLipLightOn(int period, int lightValue)
+        
+    /**
+     * 打开上嘴唇灯光
+     *
+     * @param period        闪烁频率周期  0.0--10.0 单位：0.1秒，特殊值：101表示不闪烁。
+     * @param lightValue    灯光亮度，0-100 百分比亮度
+     * @param robotCallback 回调函数
+     */
+    public void upperLipLightOn(int period, int lightValue, RobotCallback robotCallback) 
+```
+
 ### 4、地图操作（RobotOperationMap） ###
 （1）获取默认地图  
 	setMapListener(MapListener mapListener) 和 getDefaultMapInfo()
@@ -188,6 +211,7 @@ dependencies {
 
 （5）转圈  
 	机器人以默认速度右转360度turnAround()或者turnAround(RobotCallback robotCallback);
+
 ### 8、导航运动（RobotOperationNavi） ###
 机器人导航运动的类，导航到指定位置。  
 （1）普通导航  
@@ -250,7 +274,7 @@ dependencies {
 
 （4）指纹识别开关  
 	recognizeSwitch(boolean isOpen)或者recognizeSwitch(boolean isOpen, RobotCallback robotCallback)
-### 16、广告机器人（RobotOperateAd) ###
+### ~~16、广告机器人（RobotOperateAd)~~ ###
 包含有指纹信息增、删、查及其识别开关功能。  
 （1）打开广告投射灯开关  
 	openProjector() 或者openProjector(RobotCallback robotCallback)  

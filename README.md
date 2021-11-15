@@ -1,4 +1,4 @@
-# 神州云海IwaaSDK集成说明文档V1.0.3 #
+# 神州云海IwaaSDK集成说明文档V1.0.2 #
 
 ## 一、概述 ##
 
@@ -24,7 +24,7 @@ Iwaa SDK是以aar文件打包，分为两个包语音语义SDK和机器人控制
 集成了科大讯飞语音识别技术、语音合成技术、灵聚广义语义。
 
 2、msc.jar（科大讯飞）
-msc.jar和libmsc.so 为讯飞资源文件,需要在讯飞开放平台申请应用;如需使用,请更换为自己申请应用的msc.jar和libmsc.so。
+msc.jar和libmsc.so 为讯飞资源文件,需要在[讯飞开放平台](https://www.xfyun.cn/)申请应用;如需使用,请更换为自己申请应用的msc.jar和libmsc.so。
 
 3、AIEngine.aar（广义语义）
 灵聚广义语义官方SDK。AppKey与该SDK没有绑定，如果需要使用,请到[灵聚](https://open.lingju.ai/)官网申请应用，在初始化时候传入自己申请的AppKey。

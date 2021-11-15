@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ScrollView;
@@ -107,6 +106,8 @@ public class AudioActivity extends BaseActivity
             case R.id.id_clear:
                 tvReco.setText("");
                 break;
+            default:
+                break;
 
         }
     }
@@ -141,6 +142,7 @@ public class AudioActivity extends BaseActivity
 
     @Override
     public boolean onRecoginzeResult(String result) {
+        tvReco.append("  user: ");
         tvReco.append(result);
         tvReco.append("\n");
         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
@@ -152,6 +154,7 @@ public class AudioActivity extends BaseActivity
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                tvReco.append("robot: ");
                 tvReco.append(text);
                 tvReco.append("\n");
                 scrollView.fullScroll(ScrollView.FOCUS_DOWN);
@@ -176,7 +179,7 @@ public class AudioActivity extends BaseActivity
     }
 
     @Override
-    public void onCustomResponse(String s, String s1, String s2) throws RemoteException {
+    public void onCustomResponse(String reqText, String respText, String s2) throws RemoteException {
 
     }
 

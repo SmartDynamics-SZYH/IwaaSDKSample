@@ -15,6 +15,11 @@ public class DemoApp extends Application {
 
     private static final String TAG = DemoApp.class.getSimpleName();
 
+    //TODO 将此处的讯飞 appid修改为在科大讯飞官网申请的appid
+    private static final String XUNFEI_ID = "";
+    //TODO 将此处的灵聚 appid修改为在灵聚申请的appid
+    private static final String XLINGJU_ID = "";
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -25,16 +30,12 @@ public class DemoApp extends Application {
         //设置当前屏幕显示为永不休眠
         updateScreenTimeoutFromNever();
 
-        //语音语义相关服务，SDK默认科大讯飞语音语义和灵聚语义，但是appid是固定的。需要更换的话用下面的方法
-        AudioEngineProxy.getInstance().bindAudioEngineService(this);
-
-        //替换科大讯飞语音语义或者灵聚语义
-        //AudioEngineProxy.Builder builder = new AudioEngineProxy.Builder();
-        //使用自己生申请的科大讯飞Appid,需要去掉IflytechSDL-release-1.0.aar,加入自己得申请的jar和so文件
-        //builder.buildIflytekAppId("xf_appid");
-        //替换灵聚的语义appid,dev.lingju.ai
-        //builder.buildLingjuAppKey("lingju_appid");
-        //AudioEngineProxy.getInstance().bindAudioEngineService(this, builder);
+        //替换科大讯飞语音id
+        AudioEngineProxy.Builder builder = new AudioEngineProxy.Builder();
+        //使用自己生申请的科大讯飞Appid,需要去掉IflytechSDL-release-1.0.aar,加入自己得申请的msc.jar和libmsc.so文件
+        builder.buildIflytekAppId(XUNFEI_ID);
+        builder.buildLingjuAppKey(XLINGJU_ID);
+        AudioEngineProxy.getInstance().bindAudioEngineService(this, builder);
     }
 
 

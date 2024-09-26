@@ -40,7 +40,7 @@ public class RobotStatusActivity extends BaseActivity {
         @Override
         public void onSensorStatusResponse(SensorStatusResponse ssr) {
             //TODO 机器人传感器信息的回调
-            //激光束 0-189（共计180个）
+            //激光束 0-N-1（共计N个）
             ArrayList<SensorStatusResponse.Laser> lasers = ssr.getLaserList();
             if (lasers != null) {
                 List<Integer> distances = new ArrayList<>();
